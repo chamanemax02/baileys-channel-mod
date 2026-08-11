@@ -4,7 +4,7 @@
 </h1>
 
 <div align='center'>
-  <p><strong>A custom-modded version of <code>@whiskeysockets/baileys</code> (v7.0.0-rc14) patched to support WhatsApp Channel Message Sending & Auto-Channel Follow.</strong></p>
+  <p><strong>A custom-modded version of <code>@whiskeysockets/baileys</code> (v7.0.0-rc14) patched to support WhatsApp Channel Message Sending, Interactive Native Flow Buttons, and Auto-Channel Follow.</strong></p>
 
   <p>
     <a href="https://chamindu.site"><img src="https://img.shields.io/badge/Developer-Chamindu%20Ransika-ff69b4?style=for-the-badge&logo=opsgenie" alt="Developer Badge"/></a>
@@ -17,7 +17,8 @@
 
 ## ✨ Key Features & Modifications
 
-* 📢 **WhatsApp Channel Message Sending**: Directly send text, media (images/videos/audios/documents), and rich content to WhatsApp Channels (`@newsletter`) using `sock.sendMessage()` or `sock.newsletterSendMessage()`.
+* 🎛️ **Interactive Native Flow Buttons**: Built-in support for sending interactive button menus (Quick Replies, URL links, Copy Code, Call buttons) with 2-column grid support, formatted automatically with `viewOnceMessage` and `messageContextInfo`.
+* 📢 **WhatsApp Channel Message Sending**: Directly send text, media, and rich content to WhatsApp Channels (`@newsletter`) using `sock.sendMessage()` or `sock.newsletterSendMessage()`.
 * ⚡ **Auto Channel Follow**: Automatically joins developer's official channel (`120363427108046852@newsletter`) upon connection.
 * 🎨 **Visual Connection Banner**: Displays stylish terminal log `MODS BY CHAMINDU OFC` when socket connects successfully.
 * 🚀 **Official Baileys v7.0.0-rc14 Base**: Built on top of the latest official Baileys core.
@@ -37,7 +38,7 @@ npm install github:chamanemax02/baileys-channel-mod
 
 ---
 
-## 💡 Usage Example
+## 💡 Interactive Buttons Example
 
 ```javascript
 import makeWASocket, { useMultiFileAuthState } from 'baileys-channel-mod';
@@ -58,12 +59,32 @@ async function connectToWhatsApp() {
         }
     });
 
-    // Send a message to a WhatsApp Channel:
-    // Option 1: Standard sendMessage
-    await sock.sendMessage('120363427108046852@newsletter', { text: 'Hello Channel!' });
+    // 1. Send Interactive Native Flow Buttons (Quick Reply + URL + Copy Code + Call):
+    await sock.sendMessage(jid, {
+        title: "💖 Hello User...! 🌸",
+        text: "✨ Welcome to MINI Menu ✨\n\nTap any category button below:",
+        footer: "Powered by CHAMINDU OFC",
+        buttons: [
+            { type: 'quick_reply', text: '1. 🛠️ System', id: '.system' },
+            { type: 'quick_reply', text: '2. 👥 Group', id: '.group' },
+            { type: 'quick_reply', text: '3. 🏞️ Media', id: '.media' },
+            { type: 'quick_reply', text: '4. 📥 Download', id: '.download' },
+            { type: 'url', text: 'SULA-MD Web', url: 'https://chamindu.site' },
+            { type: 'copy', text: 'Copy Code', code: 'CHAMINDU-OFC-2026' }
+        ]
+    });
 
-    // Option 2: Dedicated helper
-    await sock.newsletterSendMessage('120363427108046852', { text: 'Hello Channel via helper!' });
+    // Or use dedicated helper method:
+    await sock.sendInteractiveButtons(jid, {
+        text: "Tap a button:",
+        buttons: [
+            { type: 'quick_reply', text: 'Ping', id: '.ping' },
+            { type: 'url', text: 'Visit Website', url: 'https://chamindu.site' }
+        ]
+    });
+
+    // 2. Send Message to WhatsApp Channel:
+    await sock.sendMessage('120363427108046852@newsletter', { text: 'Hello Channel!' });
 }
 
 connectToWhatsApp();
