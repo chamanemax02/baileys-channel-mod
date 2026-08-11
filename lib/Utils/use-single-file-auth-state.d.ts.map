@@ -1,0 +1,1 @@
+{"version":3,"file":"use-single-file-auth-state.d.ts","sourceRoot":"","sources":["../../src/Utils/use-single-file-auth-state.ts"],"names":[],"mappings":"AAOA,OAAO,KAAK,EAAuB,mBAAmB,EAAqB,MAAM,UAAU,CAAA;AAI3F,eAAO,MAAM,sBAAsB,GAAU,UAAU,MAAM,KAAG,OAAO,CAAC;IAAE,KAAK,EAAE,mBAAmB,CAAC;IAAC,SAAS,EAAE,MAAM,IAAI,CAAA;CAAE,CAmG5H,CAAA"}
