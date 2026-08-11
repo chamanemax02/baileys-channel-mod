@@ -1,7 +1,7 @@
 {
   "name": "baileys-channel-mod",
   "type": "module",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A custom modded version of @whiskeysockets/baileys (v7.0.0-rc14) with channel message sending & auto-follow capabilities",
   "keywords": [
     "whatsapp",
